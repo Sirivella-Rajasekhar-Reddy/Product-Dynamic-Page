@@ -2,7 +2,8 @@
 from crewai import Crew, Process, Agent, Task
 from crewai_tools import WebsiteSearchTool
 from langchain_community.vectorstores import FAISS
-from langchain_huggingface import HuggingFaceEmbeddings
+#from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.tools.retriever import create_retriever_tool
 from langchain_community.document_loaders import WebBaseLoader
@@ -28,7 +29,8 @@ def create_tool(web_url):
         #st.write(docs)
         text_splitter_docs=RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100).split_documents(docs)
         #st.write(text_splitter_docs)
-        embeddings=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        #embeddings=HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        embeddings=OllamaEmbeddings(model="llama3.1")
         vector_store=FAISS.from_documents(text_splitter_docs, embeddings)
         retriever=vector_store.as_retriever()
         retriever_tool=create_retriever_tool(retriever, "Analyzer", "Get related document information in the form of table")
