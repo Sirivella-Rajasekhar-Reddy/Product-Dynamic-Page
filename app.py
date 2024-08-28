@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 import os, json, bs4
 load_dotenv()
 
-os.environ['HF_TOKEN']=os.getenv("HF_TOKEN")
+os.environ['HF_TOKEN']="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"
 
 #GUCCI -> "purchase-column purchase-column--has-stock", "detail-accordion", "accordion-product-details"
 
