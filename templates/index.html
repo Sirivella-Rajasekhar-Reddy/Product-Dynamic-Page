@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .product { display: flex; flex-direction: column; align-items: center; }
+        .product img { max-width: 300px; margin-bottom: 20px; }
+        .product h2 { margin: 0; }
+        .product .price, .product .style { font-size: 1.0em; margin: 10px 0; }
+        .product .description, .product .specifications { margin: 10px 0; max-width: 600px; }
+        .product-form { margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <h1>Product Details Page</h1>
+    <form method="post" class="product-form">
+        <input type="text" name="product_url" placeholder="Enter Product URL" required>
+        <button type="submit">Get Product Details</button>
+    </form>
+    {% if product_details.empty !=True %}
+        <div class="product">
+            <h2>{{ product_details['product_name'].to_string(index=False) }}</h2>
+            <img src="https://www.javatpoint.com/images/nature-1.jpg" alt="Product Image">
+            <div class="price">{{ "Price : $ "+product_details['price'].to_string(index=False) }}</div>
+            <div class="style">{{ "Style Number : "+product_details['style_number'].to_string(index=False) }}</div>
+            <div class="description">{{ product_details['description'].to_string(index=False) }}</div>
+            <div class="specifications">{{ product_details['features'].to_string(index=False) }}</div>
+        </div>
+    {% endif %}
+</body>
+</html>
